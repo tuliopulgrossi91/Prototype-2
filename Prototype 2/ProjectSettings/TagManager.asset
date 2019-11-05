@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Quest
+  - Game
+  - Alt
+  - Clock
+  - TextSelect
+  - TextQuestion
+  - TextCount
   layers:
   - Default
   - TransparentFX

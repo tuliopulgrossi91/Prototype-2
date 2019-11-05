@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shake : MonoBehaviour
 {
@@ -9,12 +7,15 @@ public class Shake : MonoBehaviour
 
     void Update()
     {
-        #region CAMERA SHAKE
-        if (shake == true && shake_Time > 0)
+        if (Time.timeScale == 1)
         {
-            Vector2 shakeMe = Random.insideUnitCircle * shake_Intensity;
-            transform.position = new Vector3(transform.position.x + shakeMe.x, transform.position.y + shakeMe.y, transform.position.z);
-            shake_Time -= Time.deltaTime;
+            #region CAMERA SHAKE
+            if (shake == true && shake_Time > 0)
+            {
+                Vector2 shakeMe = Random.insideUnitCircle * shake_Intensity;
+                transform.position = new Vector3(transform.position.x + shakeMe.x, transform.position.y + shakeMe.y, transform.position.z);
+                shake_Time -= Time.deltaTime;
+            } 
         }
         #endregion
     }

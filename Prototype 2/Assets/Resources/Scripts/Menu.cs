@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     public GameObject MenuManager, Settings, Credits, Exit;
 
     // menu game
@@ -22,4 +27,9 @@ public class Menu : MonoBehaviour
 
     // load level
     public void LoadLevel() => SceneManager.LoadScene(1);
+
+    public void ResetRecord()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
