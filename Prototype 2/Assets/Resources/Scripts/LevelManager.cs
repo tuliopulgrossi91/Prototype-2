@@ -38,17 +38,21 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         QuestList();
-        count_quest = 0;
+        Item.CheckRandom();
         count_time = 120f;
+        quest_list = 0;
+        count_quest = 0;
         finish = false;
         GameOver.SetActive(false);
-        text_Result.text = name_result.ToString();
-        text_Count.text = "" + count_quest.ToString();
         Time.timeScale = 1;
+        Results.SetActive(false);
     }
 
     void Update()
     {
+        text_Result.text = name_result;
+        Debug.Log(name_result);
+
         #region CHECK TIME GAME
         text_Time.text = Mathf.Round(count_time).ToString();
         count_time -= Time.deltaTime;
@@ -62,20 +66,80 @@ public class LevelManager : MonoBehaviour
             GameOver.SetActive(true);
         }
 
-        if (finish == true) // game finish - show results
+        if (finish == true && count_time > 0) // game finish - show results
         {
             Questions.SetActive(false);
             Results.SetActive(true);
         }
 
-        if (Levels.score > Levels.record)
+        #region CHECK RECORDS
+        if (Levels.load == 0)
         {
-            Levels.record = Levels.score;
-            PlayerPrefs.SetInt("Record", Levels.record);
-        }
+            if (Levels.score0 > Levels.record0)
+            {
+                Levels.record0 = Levels.score0;
+                PlayerPrefs.SetInt("Record0", Levels.record0);
+            }
 
-        text_Score.text = "Pontos: " + Levels.score.ToString();
-        text_Record.text = "Total: " + Levels.record.ToString();
+            text_Score.text = "Pontos: " + Levels.score0.ToString();
+            text_Record.text = "Total: " + Levels.record0.ToString();
+        }
+        if (Levels.load == 1)
+        {
+            if (Levels.score1 > Levels.record1)
+            {
+                Levels.record1 = Levels.score1;
+                PlayerPrefs.SetInt("Record1", Levels.record1);
+            }
+
+            text_Score.text = "Pontos: " + Levels.score1.ToString();
+            text_Record.text = "Total: " + Levels.record1.ToString();
+        }
+        if (Levels.load == 2)
+        {
+            if (Levels.score2 > Levels.record2)
+            {
+                Levels.record2 = Levels.score2;
+                PlayerPrefs.SetInt("Record2", Levels.record2);
+            }
+
+            text_Score.text = "Pontos: " + Levels.score2.ToString();
+            text_Record.text = "Total: " + Levels.record2.ToString();
+        }
+        if (Levels.load == 3)
+        {
+            if (Levels.score3 > Levels.record3)
+            {
+                Levels.record3 = Levels.score3;
+                PlayerPrefs.SetInt("Record3", Levels.record3);
+            }
+
+            text_Score.text = "Pontos: " + Levels.score3.ToString();
+            text_Record.text = "Total: " + Levels.record3.ToString();
+        }
+        if (Levels.load == 4)
+        {
+            if (Levels.score4 > Levels.record4)
+            {
+                Levels.record4 = Levels.score4;
+                PlayerPrefs.SetInt("Record4", Levels.record4);
+            }
+
+            text_Score.text = "Pontos: " + Levels.score4.ToString();
+            text_Record.text = "Total: " + Levels.record4.ToString();
+        }
+        if (Levels.load == 5)
+        {
+            if (Levels.score5 > Levels.record5)
+            {
+                Levels.record5 = Levels.score5;
+                PlayerPrefs.SetInt("Record5", Levels.record5);
+            }
+
+            text_Score.text = "Pontos: " + Levels.score5.ToString();
+            text_Record.text = "Total: " + Levels.record5.ToString();
+        } 
+        #endregion
         #endregion
 
         if (Item.check == true)
@@ -83,8 +147,6 @@ public class LevelManager : MonoBehaviour
             Item.check = false;
             NextQuest();
         }
-
-        text_Result.text = name_result;
     }
 
     void QuestList()

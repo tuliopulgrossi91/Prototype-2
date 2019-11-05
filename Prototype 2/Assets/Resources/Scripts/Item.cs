@@ -52,7 +52,31 @@ public class Item : MonoBehaviour
         if(check_score == true)
         {
             check_score = false;
-            Levels.score++;
+            
+            if (Levels.load == 0)
+            {
+                Levels.score0++;
+            }
+            if (Levels.load == 1)
+            {
+                Levels.score1++;
+            }
+            if (Levels.load == 2)
+            {
+                Levels.score2++;
+            }
+            if (Levels.load == 3)
+            {
+                Levels.score3++;
+            }
+            if (Levels.load == 4)
+            {
+                Levels.score4++;
+            }
+            if (Levels.load == 5)
+            {
+                Levels.score5++;
+            }
         }
     }
 
@@ -77,14 +101,12 @@ public class Item : MonoBehaviour
         if (coll.gameObject.tag == "Quest")
         {
             LevelManager.count_quest++;
-            CheckRandom();
             check = true;
 
             if (LevelManager.name_result == name_select)
             {
                 Debug.Log("Igual!");
                 check_score = true;
-                
             }
             else
             {
