@@ -30,6 +30,11 @@ public class Menu : MonoBehaviour
 
     public void ResetRecord()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("Record0");
+        PlayerPrefs.DeleteKey("Record1");
+        PlayerPrefs.DeleteKey("Record2");
+        PlayerPrefs.DeleteKey("Record3");
+        PlayerPrefs.DeleteKey("Record4");
+        PlayerPrefs.DeleteKey("Record5");
     }
 }
