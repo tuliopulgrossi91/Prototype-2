@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public GameObject Questions, Pause, Settings, Results; // panels
+    public GameObject Help, Questions, Pause, Settings, Results; // panels
     public GameObject GameOver; // timer 0
     public Text text_Time; // text time
     public Text text_Question, text_Count, text_Result; // text question, count, result
@@ -16,6 +16,13 @@ public class LevelManager : MonoBehaviour
     public static string name_result;
 
     #region BUTTONS AND PANELS
+    public void HelpPanel()
+    {
+        Help.SetActive(false);
+        Questions.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     public void QuestionsGame(bool q) => Questions.SetActive(q); // questions game
     public void OnApplicationPause(bool pause)
     {
@@ -37,6 +44,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Help.SetActive(true);
         QuestList();
         Item.CheckRandom();
         count_time = 120f;
@@ -44,7 +52,7 @@ public class LevelManager : MonoBehaviour
         count_quest = 0;
         finish = false;
         GameOver.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         Results.SetActive(false);
     }
 
@@ -138,7 +146,7 @@ public class LevelManager : MonoBehaviour
 
             text_Score.text = "Pontos: " + Levels.score5.ToString();
             text_Record.text = "Total: " + Levels.record5.ToString();
-        } 
+        }
         #endregion
         #endregion
 
