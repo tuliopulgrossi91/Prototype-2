@@ -535,7 +535,7 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 090f29b70c71d092eb5a97cda04a25a1
+      Hash: fe86d3d2feee1871048d246d85c4fd72
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelManager
