@@ -11,6 +11,9 @@ TagManager:
   - TextSelect
   - TextQuestion
   - TextCount
+  - TextSelect2
+  - TextSelect3
+  - TextSelect1
   layers:
   - Default
   - TransparentFX

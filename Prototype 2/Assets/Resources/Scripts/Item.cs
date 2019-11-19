@@ -4,55 +4,38 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     private Vector3 pos;
-    public static int i, r;
     public static bool drag, check, check_score;
     private Image spr_Element;
-    public static Sprite[] spritesElements = new Sprite[3];
+    public static Sprite spritesElements;
     public static Text text_Select; // text select
     public static string name_select;
-    public static string [] alts = new string[3];
+    public static string alt_Item;
 
     void Start()
     {
-        i = 0;
         CheckRandom();
         text_Select = GameObject.FindGameObjectWithTag("TextSelect").GetComponent<Text>();
         drag = false;
         check = false;
         check_score = false;
         pos = gameObject.transform.position;
-        spritesElements[0] = Resources.Load<Sprite>("Sprites/Elements/0");
-        spritesElements[1] = Resources.Load<Sprite>("Sprites/Elements/1");
-        spritesElements[2] = Resources.Load<Sprite>("Sprites/Elements/2");
+        spritesElements = Resources.Load<Sprite>("Sprites/Elements/0");
         spr_Element = GetComponent<Image>();
-        spr_Element.sprite = spritesElements[i];
-        text_Select.text = alts[i];
+        spr_Element.sprite = spritesElements;
+        text_Select.text = alt_Item;
         name_select = text_Select.text;
     }
 
     void Update()
     {
-        spr_Element.sprite = spritesElements[i];
-        text_Select.text = alts[i];
+        spr_Element.sprite = spritesElements;
+        text_Select.text = alt_Item;
         name_select = text_Select.text;
 
-        if (Select.press == true)
-        {
-            if (check == false)
-            {
-                i++;
-                if (i > 2)
-                {
-                    i = 0;
-                }
-            }
-            Select.press = false;
-        }
-
-        if(check_score == true)
+        if (check_score == true)
         {
             check_score = false;
-            
+
             if (Levels.load == 0)
             {
                 Levels.score0++;
@@ -124,136 +107,136 @@ public class Item : MonoBehaviour
 
     public static void CheckRandom()
     {
-        r = Random.Range(0, 3);
+        LevelManager.r = Random.Range(0, 3);
 
-        if (r == 0)
+        if (LevelManager.r == 0)
         {
             // result = alt 1
 
             switch (Levels.load)
             {
                 case 0: // Level 0
-                    alts[0] = "" + List.numbers_right[LevelManager.quest_list];
-                    alts[1] = "" + List.numbers_alt1[LevelManager.quest_list];
-                    alts[2] = "" + List.numbers_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.numbers_right[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.numbers_alt1[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.numbers_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.numbers_right[LevelManager.quest_list];
                     break;
                 case 1: // Level 1
-                    alts[0] = "" + List.symbols_right[LevelManager.quest_list];
-                    alts[1] = "" + List.symbols_alt1[LevelManager.quest_list];
-                    alts[2] = "" + List.symbols_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.symbols_right[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.symbols_alt1[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.symbols_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.symbols_right[LevelManager.quest_list];
                     break;
                 case 2: // Level 2
-                    alts[0] = "" + List.names_right[LevelManager.quest_list];
-                    alts[1] = "" + List.names_alt1[LevelManager.quest_list];
-                    alts[2] = "" + List.names_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.names_right[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.names_alt1[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.names_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.names_right[LevelManager.quest_list];
                     break;
                 case 3: // Level 3
-                    alts[0] = "" + List.mass_right[LevelManager.quest_list];
-                    alts[1] = "" + List.mass_alt1[LevelManager.quest_list];
-                    alts[2] = "" + List.mass_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.mass_right[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.mass_alt1[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.mass_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.mass_right[LevelManager.quest_list];
                     break;
                 case 4: // Level 4
-                    alts[0] = "" + List.period_right[LevelManager.quest_list];
-                    alts[1] = "" + List.period_alt1[LevelManager.quest_list];
-                    alts[2] = "" + List.period_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.period_right[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.period_alt1[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.period_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.period_right[LevelManager.quest_list];
                     break;
                 case 5: // Level 5
-                    alts[0] = "" + List.family_right[LevelManager.quest_list];
-                    alts[1] = "" + List.family_alt1[LevelManager.quest_list];
-                    alts[2] = "" + List.family_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.family_right[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.family_alt1[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.family_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.family_right[LevelManager.quest_list];
                     break;
             }
         }
-        if (r == 1)
+        if (LevelManager.r == 1)
         {
             // result = alt 2
 
             switch (Levels.load)
             {
                 case 0: // Level 0
-                    alts[0] = "" + List.numbers_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.numbers_right[LevelManager.quest_list];
-                    alts[2] = "" + List.numbers_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.numbers_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.numbers_right[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.numbers_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.numbers_right[LevelManager.quest_list];
                     break;
                 case 1: // Level 1
-                    alts[0] = "" + List.symbols_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.symbols_right[LevelManager.quest_list];
-                    alts[2] = "" + List.symbols_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.symbols_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.symbols_right[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.symbols_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.symbols_right[LevelManager.quest_list];
                     break;
                 case 2: // Level 2
-                    alts[0] = "" + List.names_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.names_right[LevelManager.quest_list];
-                    alts[2] = "" + List.names_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.names_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.names_right[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.names_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.names_right[LevelManager.quest_list];
                     break;
                 case 3: // Level 3
-                    alts[0] = "" + List.mass_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.mass_right[LevelManager.quest_list];
-                    alts[2] = "" + List.mass_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.mass_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.mass_right[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.mass_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.mass_right[LevelManager.quest_list];
                     break;
                 case 4: // Level 4
-                    alts[0] = "" + List.period_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.period_right[LevelManager.quest_list];
-                    alts[2] = "" + List.period_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.period_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.period_right[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.period_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.period_right[LevelManager.quest_list];
                     break;
                 case 5: // Level 5
-                    alts[0] = "" + List.family_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.family_right[LevelManager.quest_list];
-                    alts[2] = "" + List.family_alt2[LevelManager.quest_list];
+                    alt_Item = "" + List.family_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.family_right[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.family_alt2[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.family_right[LevelManager.quest_list];
                     break;
             }
         }
-        if (r == 2)
+        if (LevelManager.r == 2)
         {
             // result = alt 3
 
             switch (Levels.load)
             {
                 case 0: // Level 0
-                    alts[0] = "" + List.numbers_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.numbers_alt2[LevelManager.quest_list];
-                    alts[2] = "" + List.numbers_right[LevelManager.quest_list];
+                    alt_Item = "" + List.numbers_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.numbers_alt2[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.numbers_right[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.numbers_right[LevelManager.quest_list];
                     break;
                 case 1: // Level 1
-                    alts[0] = "" + List.symbols_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.symbols_alt2[LevelManager.quest_list];
-                    alts[2] = "" + List.symbols_right[LevelManager.quest_list];
+                    alt_Item = "" + List.symbols_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.symbols_alt2[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.symbols_right[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.symbols_right[LevelManager.quest_list];
                     break;
                 case 2: // Level 2
-                    alts[0] = "" + List.names_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.names_alt2[LevelManager.quest_list];
-                    alts[2] = "" + List.names_right[LevelManager.quest_list];
+                    alt_Item = "" + List.names_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.names_alt2[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.names_right[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.names_right[LevelManager.quest_list];
                     break;
                 case 3: // Level 3
-                    alts[0] = "" + List.mass_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.mass_alt2[LevelManager.quest_list];
-                    alts[2] = "" + List.mass_right[LevelManager.quest_list];
+                    alt_Item = "" + List.mass_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.mass_alt2[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.mass_right[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.mass_right[LevelManager.quest_list];
                     break;
                 case 4: // Level 4
-                    alts[0] = "" + List.period_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.period_alt2[LevelManager.quest_list];
-                    alts[2] = "" + List.period_right[LevelManager.quest_list];
+                    alt_Item = "" + List.period_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.period_alt2[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.period_right[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.period_right[LevelManager.quest_list];
                     break;
                 case 5: // Level 5
-                    alts[0] = "" + List.family_alt1[LevelManager.quest_list];
-                    alts[1] = "" + List.family_alt2[LevelManager.quest_list];
-                    alts[2] = "" + List.family_right[LevelManager.quest_list];
+                    alt_Item = "" + List.family_alt1[LevelManager.quest_list];
+                    Item2.alt_Item2 = "" + List.family_alt2[LevelManager.quest_list];
+                    Item3.alt_Item3 = "" + List.family_right[LevelManager.quest_list];
                     LevelManager.name_result = "" + List.family_right[LevelManager.quest_list];
                     break;
             }

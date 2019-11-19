@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public float count_time; // counter time
     public static bool finish; // check game status
     public static string name_result;
+    public static int r; // check random alts
 
     #region BUTTONS AND PANELS
     public void HelpPanel()
@@ -59,7 +60,6 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         text_Result.text = name_result;
-        Debug.Log(name_result);
 
         #region CHECK TIME GAME
         text_Time.text = Mathf.Round(count_time).ToString();
@@ -153,6 +153,18 @@ public class LevelManager : MonoBehaviour
         if (Item.check == true)
         {
             Item.check = false;
+            NextQuest();
+        }
+
+        if (Item2.check == true)
+        {
+            Item2.check = false;
+            NextQuest();
+        }
+
+        if (Item3.check == true)
+        {
+            Item3.check = false;
             NextQuest();
         }
     }
