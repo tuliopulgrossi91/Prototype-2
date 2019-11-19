@@ -83,6 +83,7 @@ public class Item : MonoBehaviour
     {
         if (coll.gameObject.tag == "Quest")
         {
+            // usar animacao aqui
             LevelManager.count_quest++;
             check = true;
 
