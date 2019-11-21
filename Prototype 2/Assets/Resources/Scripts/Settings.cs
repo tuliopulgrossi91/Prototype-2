@@ -5,7 +5,7 @@ public class Settings : MonoBehaviour
 {
     #region DEFAULT
     private AudioClip[] auClipMusic; // array of music
-    private AudioClip auClipSfx0; // sfx audio
+    public static AudioClip auClipSfx0, auClipSfx1, auClipSfx2; // sfx audios
     public GameObject[] stMasterManager; // settings master manager
     public static bool check_Music; // check play music
 
@@ -192,6 +192,8 @@ public class Settings : MonoBehaviour
         stMasterManager[0].GetComponent<AudioSource>().Play();
         check_Music = true;
         auClipSfx0 = Resources.Load<AudioClip>("Audios/Sfxs/Clicks/0"); // click
+        auClipSfx1 = Resources.Load<AudioClip>("Audios/Sfxs/Clicks/1"); // score
+        auClipSfx2 = Resources.Load<AudioClip>("Audios/Sfxs/Clicks/2"); // error
     }
     #endregion
 }

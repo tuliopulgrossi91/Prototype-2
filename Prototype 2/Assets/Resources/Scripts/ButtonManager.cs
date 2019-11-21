@@ -10,15 +10,15 @@ public class ButtonManager : MonoBehaviour
         anima.enabled = true;
     }
 
-    public void SetAnimator(int a)
+    void Update()
     {
-        if(a == 0)
-        {
-            anima.SetBool("anima", false);
-        }
-        else
+        if (Item.drag == false || Item2.drag == false || Item3.drag == false)
         {
             anima.SetBool("anima", true);
+        }
+        if (Item.drag == true || Item2.drag == true || Item3.drag == true)
+        {
+            anima.SetBool("anima", false);
         }
     }
 }

@@ -10,7 +10,6 @@ public class LevelManager : MonoBehaviour
     public Text text_Question, text_Count, text_Result; // text question, count, result
     public Text text_Score, text_Record; // texts score and record
     public static int count_quest; // counter number of questions
-    public static int quest_list; // receive question list
     public float count_time; // counter time
     public static bool finish; // check game status
     public static string name_result;
@@ -45,20 +44,20 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
+        count_time = 120f;
+        count_quest = 0;
+        finish = false;
         Help.SetActive(true);
         QuestList();
         Item.CheckRandom();
-        count_time = 120f;
-        quest_list = 0;
-        count_quest = 0;
-        finish = false;
         GameOver.SetActive(false);
-        Time.timeScale = 0;
         Results.SetActive(false);
     }
 
     void Update()
     {
+        text_Count.text = "" + count_quest.ToString();
         text_Result.text = name_result;
 
         #region CHECK TIME GAME
@@ -174,42 +173,37 @@ public class LevelManager : MonoBehaviour
         switch (Levels.load)
         {
             case 0: // Level 0
-                text_Question.text = "" + List.numbers[quest_list];
+                text_Question.text = "" + List.numbers[count_quest];
                 break;
             case 1: // Level 1
-                text_Question.text = "" + List.symbols[quest_list];
+                text_Question.text = "" + List.symbols[count_quest];
                 break;
             case 2: // Level 2
-                text_Question.text = "" + List.names[quest_list];
+                text_Question.text = "" + List.names[count_quest];
                 break;
             case 3: // Level 3
-                text_Question.text = "" + List.mass[quest_list];
+                text_Question.text = "" + List.mass[count_quest];
                 break;
             case 4: // Level 4
-                text_Question.text = "" + List.period[quest_list];
+                text_Question.text = "" + List.period[count_quest];
                 break;
             case 5: // Level 5
-                text_Question.text = "" + List.family[quest_list];
+                text_Question.text = "" + List.family[count_quest];
                 break;
         }
     }
 
     void NextQuest()
     {
-        if (count_quest > 9)
+        // 0 1 2 3 4 5 6 7 8 9
+        if (count_quest < 10)
         {
-            finish = true;
-        }
-        else
-        {
-            text_Count.text = "" + count_quest.ToString();
-
-            if (quest_list < 10)
-            {
-                quest_list++;
-            }
             QuestList();
             Item.CheckRandom();
+        }
+        if (count_quest == 10)
+        {
+            finish = true;
         }
     }
 }

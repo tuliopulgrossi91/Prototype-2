@@ -10,6 +10,7 @@ public class Item2 : MonoBehaviour
     public static Text text_Select; // text select
     public static string name_select;
     public static string alt_Item2;
+    private AudioSource audio_Source;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Item2 : MonoBehaviour
         spr_Element.sprite = spritesElements;
         text_Select.text = alt_Item2;
         name_select = text_Select.text;
+        audio_Source = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -65,15 +67,25 @@ public class Item2 : MonoBehaviour
     public void BeginDragItem()
     {
         drag = true;
+
+        if (PlayerPrefs.GetInt("AUDIO") == 1)
+        {
+            audio_Source.PlayOneShot(Settings.auClipSfx0);
+            audio_Source.volume = PlayerPrefs.GetFloat("VOLUMEAUDIO");
+        }
     }
 
     public void DragItem()
     {
-        transform.position = Input.mousePosition;
+        if (drag == true)
+        {
+            transform.position = Input.mousePosition;
+        }
     }
 
     public void PointerUpItem()
     {
+        spr_Element.color = Color.white;
         gameObject.transform.position = pos;
         drag = false;
     }
@@ -83,16 +95,31 @@ public class Item2 : MonoBehaviour
         if (coll.gameObject.tag == "Quest")
         {
             LevelManager.count_quest++;
+
+            gameObject.transform.position = pos;
+            drag = false;
             check = true;
 
             if (LevelManager.name_result == name_select)
             {
-                Debug.Log("Igual!");
+                spr_Element.color = Color.green;
                 check_score = true;
+
+                if (PlayerPrefs.GetInt("AUDIO") == 1)
+                {
+                    audio_Source.PlayOneShot(Settings.auClipSfx1);
+                    audio_Source.volume = PlayerPrefs.GetFloat("VOLUMEAUDIO");
+                }
             }
             else
             {
-                Debug.Log("Diferente!");
+                spr_Element.color = Color.red;
+
+                if (PlayerPrefs.GetInt("AUDIO") == 1)
+                {
+                    audio_Source.PlayOneShot(Settings.auClipSfx2);
+                    audio_Source.volume = PlayerPrefs.GetFloat("VOLUMEAUDIO");
+                }
             }
         }
     }
